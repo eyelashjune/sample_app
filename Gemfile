@@ -23,12 +23,15 @@ group :test do
   gem 'growl', '1.0.3'
 
   # Uncomment these lines on Linux.
-  # gem 'libnotify', '0.8.0'
+  #gem 'libnotify', '0.8.0'
 
   # Uncomment these lines on Windows.
   # gem 'rb-notifu', '0.0.4'
   # gem 'win32console', '1.3.2'
   # gem 'wdm', '0.1.0'
+
+  #As with other Ruby gems, we can install Factory Girl by adding a line to the Gemfile used by Bundler (Listing 7.7). (Since Factory Girl is only needed in the tests, we’ve put it in the :test group.)
+  gem 'factory_girl_rails', '4.2.1'
 end
 
 gem 'sass-rails', '4.0.1'
