@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 						uniqueness: { case_sensitive: false }
 
 	# has_secure_password command does...
-	#	1. (my inference) Stores given password column into password_digest as a bcrypted password 
+	#	1. (June's inference) Stores given password column into password_digest as a bcrypted password 
 	#	2. Adds 'virtual' columns password and password_confirmation
 	#	3. Requires the presence of the password
 	#	4. Requires password and confirmation match
