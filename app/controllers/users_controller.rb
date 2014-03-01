@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   def new
+    #we must define an @user variable in the controller action corresponding to new.html.erb,
+    #i.e., the new action in the Users controller. The form_for helper expects @user to be a User object, and since we’re creating a new user we simply use User.new, as below.
+    @user = User.new
   end
 
   def show

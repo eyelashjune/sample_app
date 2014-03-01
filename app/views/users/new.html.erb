@@ -1,3 +1,25 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= #what we do need to know is what the f object does: when called with a method corresponding to an HTML form element—such as a text field, radio button, or password field—it returns code for that element specifically designed to set an attribute of the @user object.
+			form_for(@user) do |f| %>
+
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+
+			<%= f.label :password %>
+			<%= f.text_field :password %>
+
+			<%= f.label :password_confirmation, "Confirmation" %>
+			<%= f.text_field :password_confirmation %>
+
+			<%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+		<% end %>
+		<% #In the produced HTML codes, there is a some HTML related to the authenticity token, which Rails automatically includes to thwart a particular kind of attack called a cross-site request forgery (CSRF). See the Stack Overflow entry on the Rails authenticity token if you’re interested in the details of how this works and why it’s important. http://stackoverflow.com/questions/941594/understand-rails-authenticity-token %>
+	</div>
+</div>
