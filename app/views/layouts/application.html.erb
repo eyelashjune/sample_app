@@ -6,11 +6,17 @@
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-    <%= render 'layouts/shim' %>
+    <%= #we’ve replaced the HTML shim stylesheet lines with a single call to a Rails helper called render:
+      #The effect of this line is to look for a file called app/views/layouts/_shim.html.erb, evaluate its contents, and insert the results into the view.6 (Recall that < % ... % >  is the embedded Ruby syntax needed to evaluate a Ruby expression and then insert the results into the template.) Note the leading underscore on the filename _shim.html.erb; this underscore is the universal convention for naming partials, and among other things makes it possible to identify all the partials in a directory at a glance.
+      render 'layouts/shim' %>
   </head>
   <body>
     <%= render 'layouts/header' %>
     <div class="container">
+      <% #Before submitting a valid registration in a browser, we’re going to add a bit of polish common in web applications: a message that appears on the subsequent page (in this case, welcoming our new user to the application) and then disappears upon visiting a second page or on page reload. The Rails way to accomplish this is to use a special variable called the flash, which we can treat like a hash.
+      flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
       <%= #This displays some useful information about each page using the built-in debug method and params variable (which we’ll learn more about in Section 7.1.2).

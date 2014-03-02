@@ -1,0 +1,15 @@
+<% if @user.errors.any? %>
+	<div id="error_explanation">
+		<div class="alert alert-error">
+			<% # The other new idea is the pluralize text helper. It isn’t available in the console by default, but we can include it explicitly through the ActionView::Helpers::TextHelper module:
+			#I figured this out by looking up pluralize in the Rails API.
+			%>
+			The form contains <%= pluralize(@user.errors.count, "error") %>.
+		</div>
+		<ul>
+		<% @user.errors.full_messages.each do |msg| %>
+			<li> * <%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

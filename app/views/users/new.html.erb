@@ -6,6 +6,9 @@
 		<%= #what we do need to know is what the f object does: when called with a method corresponding to an HTML form element—such as a text field, radio button, or password field—it returns code for that element specifically designed to set an attribute of the @user object.
 			form_for(@user) do |f| %>
 
+			<%= #Notice here that we render a partial called ’shared/error_messages’; this reflects the common Rails convention of using a dedicated shared/ directory for partials expected to be used in views across multiple controllers. (We’ll see this expectation fulfilled in Section 9.1.1.) This means that we have to create both the new app/views/shared directory and the _error_messages.html.erb partial file. The partial itself appears in Listing 7.24.
+			render 'shared/error_messages' %>
+
 			<%= f.label :name %>
 			<%= f.text_field :name %>
 
@@ -13,10 +16,10 @@
 			<%= f.text_field :email %>
 
 			<%= f.label :password %>
-			<%= f.text_field :password %>
+			<%= f.password_field :password %>
 
 			<%= f.label :password_confirmation, "Confirmation" %>
-			<%= f.text_field :password_confirmation %>
+			<%= f.password_field :password_confirmation %>
 
 			<%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
 		<% end %>
