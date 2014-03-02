@@ -38,6 +38,14 @@ describe "User pages" do
         expect { click_button submit }.not_to change(User, :count)
         #calculates User.count before and after the execution of click_button "Create my account"
       end
+
+      #Writing tests for the error messages implemented in Listing 7.23.
+      describe "after submission" do
+        before { click_button submit }
+
+        it { should have_title('Sign up') }
+        it { should have_content('error') }
+      end
     end
 
     describe "with valid information" do
@@ -50,6 +58,15 @@ describe "User pages" do
 
       it "should create a user" do
         expect { click_button submit }.to change(User, :count)
+      end
+
+      #By writing the test first or by intentionally breaking and then fixing the application code, verify that the tests in Listing 7.32 correctly specify the desired behavior after saving the user in the create action. Listing 7.32 uses the have_selector method introduced in the Chapter 5 exercises (Section 5.6). In this case, we use have_selector to pick out particular CSS classes along with specific HTML tags.
+      describe "after saving the user" do
+        before { click_button submit }
+        let(:user) { User.find_by(email: 'user@example.com') }
+
+        it { should have_title(user.name) }
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
     end
   end

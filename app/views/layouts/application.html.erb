@@ -15,7 +15,10 @@
     <div class="container">
       <% #Before submitting a valid registration in a browser, we’re going to add a bit of polish common in web applications: a message that appears on the subsequent page (in this case, welcoming our new user to the application) and then disappears upon visiting a second page or on page reload. The Rails way to accomplish this is to use a special variable called the flash, which we can treat like a hash.
       flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
+        <%= content_tag(:div, value, class: "alert alert-#{key}")
+          #The flash ERb in the site layout using content_tag. more clearer than <div class="alert alert-< %= key % >">< %= value % ></div>
+        %>
+
       <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
