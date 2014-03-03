@@ -5,8 +5,18 @@ SampleApp::Application.routes.draw do
   #The resulting correspondence of URLs, actions, and named routes is shown in Table 7.1. (Compare to Table 2.2.) Over the course of the next three chapters, we’ll cover all of the other entries in Table 7.1 as we fill in all the actions necessary to make Users a fully RESTful resource.
   resources :users
 
+  #To get the tests in Listing 8.1 to pass, we first need to define routes for the Sessions resource, together with a custom named route for the signin page (which we’ll map to the Session controller’s new action). As with the Users resource, we can use the resources method to define the standard RESTful routes:
+  #Since we have no need to show or edit sessions, we’ve restricted the actions to new, create, and destroy using the :only option accepted by resources.
+  #Note that the routes for signin and signout are custom, but the route for creating a session is simply the default (i.e., [resource name]_path).
+  resources :sessions, only: [:new, :create, :destroy]
+
   root  'static_pages#home'
+
   match '/signup',  to: 'users#new',            via: 'get'
+
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
+
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
