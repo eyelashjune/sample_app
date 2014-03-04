@@ -1,2 +1,22 @@
 <% provide(:title, "Sign in") %>
 <h1>Sign in</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= #A second option is to use form_tag in place of form_for; this might be even more idiomatically correct Rails, but it has less in common with the signup form, and at this stage I want to emphasize the parallel structure. Making a working form with form_tag is left as an exercise (Section 8.5).)
+			form_for(:session, url: sessions_path) do |f| %>
+
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+
+			<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+		<% #Comparing Listing 8.8 with Listing 7.20, you might be able to guess that submitting this form will result in a params hash where params[:session][:email] and params[:session][:password] correspond to the email and password fields.
+			#Take a look at the HTML source, Comparing Listing 8.8 with Listing 7.20, you might be able to guess that submitting this form will result in a params hash where params[:session][:email] and params[:session][:password] correspond to the email and password fields.
+			end %>
+
+		<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+	</div>
+</div>
